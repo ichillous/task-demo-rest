@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Task List</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Task List</h1>
+    <div class="task-grid">
+        <div th:each="task : ${tasks}" class="task-card">
+            <div class="task-details">
+                <h2 th:text="${task.title}">Title</h2>
+                <p><strong>Description:</strong> <span th:text="${task.description}">Description</span></p>
+                <p><strong>Status:</strong> <span th:text="${task.status}"></span></p>
+            </div>
+            <div class="task-actions">
+                <a th:href="@{/api/tasks/new}">Create New Task</a>
+                <a th:href="@{/api/tasks/edit/{id}(id=${task.id})}" class="edit-button">Edit</a>
+                <a th:href="@{/api/tasks/delete/{id}(id=${task.id})}" class="delete-button">Delete</a>
+            </div>
+        </div>
+    </div>
+    <a href="/api/tasks/new" class="add-button">Add New Product</a>
+</div>
+</body>
+</html>
